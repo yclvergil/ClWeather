@@ -41,6 +41,7 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         weatherInfoLayout = (LinearLayout) findViewById(R.id.weather_info_layout);
         cityNameText = (TextView) findViewById(R.id.city_name);
         publishText = (TextView) findViewById(R.id.publish_text);
+        weatherDespText = (TextView) findViewById(R.id.weather_desp);
         temp1Text = (TextView) findViewById(R.id.temp1);
         temp2Text = (TextView) findViewById(R.id.temp2);
         currentDateText = (TextView) findViewById(R.id.current_date);
@@ -86,18 +87,18 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
                         if (array.length == 2) {
                             String weatherCode = array[1];
                             queryWeatherInfo(weatherCode);
-                        } else if ("weatherCode".equals(type)) {
-                            //处理服务器返回的天气信息
-                            Utility.handleWeatherResponse(WeatherActivity.this,response);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showWeather();
-
-                                }
-                            });
                         }
                     }
+                }else if ("weatherCode".equals(type)) {
+                    //处理服务器返回的天气信息
+                    Utility.handleWeatherResponse(WeatherActivity.this,response);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showWeather();
+
+                        }
+                    });
                 }
             }
 
